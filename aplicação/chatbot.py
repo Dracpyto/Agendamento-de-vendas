@@ -4,7 +4,7 @@ from datetime import datetime
 from groq import Groq
 import gerenciador
 
-os.environ["GROQ_API_KEY"] = "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"
+os.environ["GROQ_API_KEY"] = "insira sua chave API"
 
 class ChatbotService:
     def __init__(self, api_key=None):
