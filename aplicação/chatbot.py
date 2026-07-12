@@ -4,11 +4,11 @@ from datetime import datetime
 from groq import Groq
 import gerenciador
 
-os.environ["GROQ_API_KEY"] = "insira sua chave API"
-
 class ChatbotService:
     def __init__(self, api_key=None):
-        self.api_key = api_key or os.environ.get("GROQ_API_KEY")
+        self.api_key = api_key or os.environ.get("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")
+        if not self.api_key:
+            print("Aviso: GROQ_API_KEY não foi encontrada nas variáveis de ambiente.")
         self.client = Groq(api_key=self.api_key)
         self.model = "meta-llama/llama-4-scout-17b-16e-instruct"
 

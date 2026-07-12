@@ -1,1 +1,11 @@
-[]
+[
+    {
+        "id": "9e2d5443",
+        "cliente": "Adan Alexey Mafra de Meneses",
+        "servico": "corte de cabelo",
+        "data_hora": "13/07/2026 14:00",
+        "status": "Pendente",
+        "observacoes": "",
+        "criado_em": "2026-07-12 19:25:26"
+    }
+]

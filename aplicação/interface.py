@@ -185,4 +185,7 @@ class InterfaceAgendamento:
         self.btn_excluir.pack(side="left", padx=5, fill="x", expand=True)
 
         self.btn_concluir = ttk.Button(frame_botoes_tabela, text="✅ Concluir Agendamento", style="Success.TButton", command=self.concluir_selecionado)
-        self.btn_concluir.pack(side="left", padx=(5, 0), fill="x", expand=True)
+        self.btn_concluir.pack(side="left", padx=(5, 5), fill="x", expand=True)
+        
+        self.btn_exportar = ttk.Button(frame_botoes_tabela, text="📊 Exportar Relatório", style="Secondary.TButton", command=self.exportar_relatorio)
+        self.btn_exportar.pack(side="left", padx=(0, 0), fill="x", expand=True)

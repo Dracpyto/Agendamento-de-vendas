@@ -1,7 +1,8 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, filedialog
 from datetime import datetime
 import os
+import csv
 import gerenciador
 from interface import InterfaceAgendamento
 
@@ -202,6 +203,38 @@ class AplicativoAgendamento(InterfaceAgendamento):
         else:
             messagebox.showerror("Erro", "Não foi possível atualizar o status do agendamento.")
 
+    def exportar_relatorio(self):
+        """Exporta os dados da tabela atual para um arquivo CSV compatível com Excel."""
+        if not self.tabela.get_children():
+            messagebox.showwarning("Aviso", "Não há dados na tabela para exportar.")
+            return
+
+        caminho_arquivo = filedialog.asksaveasfilename(
+            defaultextension=".csv",
+            filetypes=[("Arquivos CSV", "*.csv"), ("Todos os Arquivos", "*.*")],
+            title="Salvar Relatório Como"
+        )
+
+        if not caminho_arquivo:
+            return
+
+        try:
+            # Usar utf-8-sig para que o Excel reconheça acentuação corretamente
+            with open(caminho_arquivo, mode='w', newline='', encoding='utf-8-sig') as arquivo_csv:
+                escritor = csv.writer(arquivo_csv, delimiter=';')
+                
+                # Escrever cabeçalhos
+                cabecalhos = ["ID", "Cliente", "Serviço", "Data e Hora", "Status", "Observações"]
+                escritor.writerow(cabecalhos)
+
+                # Escrever os dados da tabela
+                for linha in self.tabela.get_children():
+                    valores = self.tabela.item(linha, "values")
+                    escritor.writerow(valores)
+                    
+            messagebox.showinfo("Sucesso", f"Relatório exportado com sucesso para:\n{caminho_arquivo}")
+        except Exception as e:
+            messagebox.showerror("Erro", f"Ocorreu um erro ao exportar o relatório:\n{e}")
 
 if __name__ == "__main__":
     root = tk.Tk()
